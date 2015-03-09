@@ -1,0 +1,13 @@
+Customer :
+- Log In-------------------------- Sudah
+- Menyewa Film
+- Mengembalikan Film
+- Memberi Komentar Film
+- Membayar Denda Film
+- Mencari Film
+
+Admin :
+- Log In-------------------------- Sudah
+- Input Film
+- Mengedit data penyewaan
+- Melihat data penyewaan
