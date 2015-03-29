@@ -1,6 +1,7 @@
 <?php
-include 'koneksi.php';
 SESSION_START();
+include 'koneksi.php';
+
 $id = $_SESSION['idm'];
 $nama = $_SESSION['namam'];
 $pid = $_SESSION['idpeminjaman'];
@@ -8,10 +9,10 @@ $pid = $_SESSION['idpeminjaman'];
 $waktukembali = $_GET['waktu'];
 
 
-$update = "UPDATE peminjaman SET WAKTUKEMBALI = '$waktukembali' WHERE PID = '$pid'";
+$update = "UPDATE PEMINJAMAN SET WAKTUKEMBALI = '$waktukembali' WHERE PID = '$pid'";
 $jalankan = mysql_query($update);
 
-$update = "UPDATE peminjaman SET STATUSPJ = 'Rented' WHERE PID = '$pid'";
+$update = "UPDATE PEMINJAMAN SET STATUSPJ = 'Rented' WHERE PID = '$pid'";
 $jalankan = mysql_query($update);
 
 unset($_SESSION['idpeminjaman']);

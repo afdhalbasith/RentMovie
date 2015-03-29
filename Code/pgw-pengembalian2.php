@@ -1,3 +1,7 @@
+<?php
+SESSION_START();
+include 'koneksi.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,13 +15,12 @@
           <div id="header">
               <div id="nav">
                   <?php
-                  SESSION_START();
-                  include 'koneksi.php';
+                  
                   $idsession = $_SESSION['ida'];
                   $id =$_GET['PID'];
                   //echo "$id";
 
-                  $lol = mysql_query("SELECT NAMA from pengguna where uid='$idsession'");
+                  $lol = mysql_query("SELECT NAMA FROM PENGGUNA WHERE UID='$idsession'");
                   while($row = mysql_fetch_array($lol)){
                   echo "Helloo ".$row["NAMA"]."<br>";}
                   ?>
@@ -39,7 +42,7 @@
 
                      print "ID Peminjaman : "."$id";
                      echo "<br>";
-                    $query = "SELECT pengguna.NAMA, pengguna.ALAMAT, pengguna.NOHP FROM pengguna, detil_peminjaman, peminjaman where detil_peminjaman.pid=peminjaman.pid and peminjaman.uid=pengguna.uid and detil_peminjaman.pid='$id'";
+                    $query = "SELECT PENGGUNA.NAMA, PENGGUNA.ALAMAT, PENGGUNA.NOHP FROM PENGGUNA, DETIL_PEMINJAMAN, PEMINJAMAN WHERE DETIL_PEMINJAMAN.PID=PEMINJAMAN.PID AND PEMINJAMAN.UID=PENGGUNA.UID AND DETIL_PEMINJAMAN.PID='$id'";
                     $result = mysql_query($query);
                     $row = mysql_fetch_array($result);
                     echo "Nama: ".$row["NAMA"]."<br>";
@@ -47,7 +50,7 @@
                     echo "No HP:".$row["NOHP"]."<br>";
                     
 
-                    $hmm = mysql_query("SELECT detil_peminjaman.FID, film.FNAMA FROM film, detil_peminjaman WHERE detil_peminjaman.FID=film.FID and detil_peminjaman.PID='$id'");
+                    $hmm = mysql_query("SELECT DETIL_PEMINJAMAN.FID, FILM.FNAMA FROM FILM, DETIL_PEMINJAMAN WHERE DETIL_PEMINJAMAN.FID=FILM.FID AND DETIL_PEMINJAMAN.PID='$id'");
                     print "<table border='1' style='width: 540px;'><tbody>";
                     print "<tr><th>ID Film</th><th>Nama Film</th></tr>";
                     while($row = mysql_fetch_array($hmm)){

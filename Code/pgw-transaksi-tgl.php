@@ -1,3 +1,7 @@
+<?php
+SESSION_START();
+include 'koneksi.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,11 +15,10 @@
           <div id="header">
               <div id="nav">
               	  	<?php
-                  SESSION_START();
-                  include 'koneksi.php';
+                  
                   $idsession = $_SESSION['ida'];
 
-                  $lol = mysql_query("SELECT NAMA from pengguna where uid='$idsession'");
+                  $lol = mysql_query("SELECT NAMA FROM PENGGUNA WHERE UID='$idsession'");
                   while($row = mysql_fetch_array($lol)){
                   echo "Helloo ".$row["NAMA"]."<br>";}
                   ?>
@@ -45,19 +48,20 @@
 
                     if(($tglterkecil>$tglterbesar) | ($tglterkecil>$sysdate) | ($tglterbesar>$sysdate) | ($tglterbesar==NULL) | ($tglterkecil==NULL))
                     {
-                      header("Location:pgw-transaksi.php?status=gagal"); 
+                      //header("Location:pgw-transaksi.php?status=gagal"); 
+					  echo '<script> self.location="pgw-transaksi.php?status=gagal"; </script>';
                     }
 
-                		$query = "SELECT peminjaman.PID,
-                                     peminjaman.PENGEMBALIAN,
-                                     peminjaman.TOTAL,
-                                     peminjaman.WAKTUPINJAM,
-                                     peminjaman.WAKTUKEMBALI,
-                                     peminjaman.DENDA,
-                                     pengguna.NAMA 
-                              FROM pengguna,
-                                   peminjaman
-                              WHERE pengguna.uid = peminjaman.uid AND peminjaman.WAKTUPINJAM <= '$tglterbesar' AND peminjaman.WAKTUPINJAM >= '$tglterkecil' ORDER BY peminjaman.WAKTUPINJAM";
+                		$query = "SELECT PEMINJAMAN.PID,
+                                     PEMINJAMAN.PENGEMBALIAN,
+                                     PEMINJAMAN.TOTAL,
+                                     PEMINJAMAN.WAKTUPINJAM,
+                                     PEMINJAMAN.WAKTUKEMBALI,
+                                     PEMINJAMAN.DENDA,
+                                     PENGGUNA.NAMA 
+                              FROM PENGGUNA,
+                                   PEMINJAMAN
+                              WHERE PENGGUNA.uid = PEMINJAMAN.uid AND PEMINJAMAN.WAKTUPINJAM <= '$tglterbesar' AND PEMINJAMAN.WAKTUPINJAM >= '$tglterkecil' ORDER BY PEMINJAMAN.WAKTUPINJAM";
 
                     
                     $result = mysql_query($query);

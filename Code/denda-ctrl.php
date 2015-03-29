@@ -1,10 +1,11 @@
 <?php
-include 'koneksi.php';
 SESSION_START();
+include 'koneksi.php';
+
 $pid = $_GET['pid'];
 $nama = $_SESSION['namam'];
 
-$update = mysql_query("UPDATE peminjaman SET DENDA = 0 WHERE PID='$pid'");
+$update = mysql_query("UPDATE PEMINJAMAN SET DENDA = 0 WHERE PID='$pid'");
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

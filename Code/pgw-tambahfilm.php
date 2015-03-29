@@ -1,6 +1,7 @@
 <?php
-include 'koneksi.php';
 SESSION_START();
+include 'koneksi.php';
+
 
 $id = $_SESSION['ida'];
 $nama = $_SESSION['namaa'];

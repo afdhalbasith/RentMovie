@@ -1,3 +1,7 @@
+<?php
+SESSION_START();
+include 'koneksi.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,14 +33,12 @@
           <div id="header">
               <div id="nav">
                   <?php
-                  SESSION_START();
-                  include 'koneksi.php';
                   //$idsession = '100';
                   $idsession = $_SESSION['idm'];
                   //$kategori = 'Action';
                   //$kategori = $_GET['kategori'];
 
-                  $lol = mysql_query("SELECT NAMA from pengguna where uid='$idsession'");
+                  $lol = mysql_query("SELECT NAMA FROM PENGGUNA WHERE UID='$idsession'");
                   while($row = mysql_fetch_array($lol)){
                   echo "Helloo ".$row["NAMA"]."<br>";}
                   ?>
@@ -72,16 +74,17 @@
           <div id="body">
               <div class="inner">
                   <?php
-                  $lolz = mysql_query("SELECT * from film order by FNAMA");
+                  $lolz = mysql_query("SELECT * FROM FILM ORDER BY FNAMA");
                   while($row = mysql_fetch_array($lolz)){$judul = $row['FNAMA']."<br>"; $sinopsis = $row['SINOPSIS']."<br>";$harga = $row['HARGA']."<br>";$stausfl = $row['STATUSFL']."<br>";
                   
                   echo "<div class='boxed'>";
                   echo "    <h3><b>".$judul."</b></h3>";
                   echo "    <img src='images/".$row['FID'].".jpg' width='93' height='130' alt='photo 1' class='left' />";
                   echo "    <p class='sinop'>".$sinopsis;
+				  echo "    <p><b>Kategori :  </b>".$row['KATEGORI'];
                   echo "    <p><b>Harga :  </b>Rp. " .$harga;
                   echo "    <p><b>Availability :</b>".$stausfl."</p>";
-                  
+                  echo "	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
                   echo "    <a class='readmore'><a href='movie.php?fid=".$row['FID']."'><b>RENT NOW</b></a></a></p>";
                   echo "    <div class='clear'></div>";
                   echo "</div>";

@@ -1,3 +1,7 @@
+<?php
+SESSION_START();
+include 'koneksi.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,11 +33,10 @@
           <div id="header">
               <div id="nav">
               <?php
-                  SESSION_START();
-                  include 'koneksi.php';
+                
                   $idsession = $_SESSION['idm'];
 
-                  $lol = mysql_query("SELECT NAMA from pengguna where uid='$idsession'");
+                  $lol = mysql_query("SELECT NAMA FROM PENGGUNA WHERE UID='$idsession'");
                   while($row = mysql_fetch_array($lol)){
                   echo "Helloo ".$row["NAMA"]."<br>";}
               ?>
@@ -70,7 +73,7 @@
                 {
                 
                 $lol = $_GET['course'];
-                $sql = "SELECT * From film WHERE FNAMA='$lol'";
+                $sql = "SELECT * FROM FILM WHERE FNAMA='$lol'";
                 $result = mysql_query($sql) or die ("fail to insert");
 
                 while($row = mysql_fetch_array($result)){

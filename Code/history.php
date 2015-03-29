@@ -1,3 +1,7 @@
+<?php
+SESSION_START();
+include 'koneksi.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -30,11 +34,10 @@
           <div id="header">
               <div id="nav">
                   <?php
-                  SESSION_START();
-                  include 'koneksi.php';
+                  
                   $idsession = $_SESSION['idm'];
 
-                  $lol = mysql_query("SELECT NAMA from pengguna where uid='$idsession'");
+                  $lol = mysql_query("SELECT NAMA FROM PENGGUNA WHERE UID='$idsession'");
                   while($row = mysql_fetch_array($lol)){
                   echo "Helloo ".$row["NAMA"]."<br>";}
                   ?>
@@ -81,7 +84,7 @@
                           "FROM pengguna,peminjaman,film,detil_peminjaman ".
                           "WHERE pengguna.uid='$uidd' and pengguna.uid=peminjaman.uid and film.fid=detil_peminjaman.fid and peminjaman.pid=detil_peminjaman.pid";
                 */
-				$query = "SELECT * FROM peminjaman WHERE UID='$uidd'";
+				$query = "SELECT * FROM PEMINJAMAN WHERE UID='$uidd'";
 				$result = mysql_query($query);
 				
 				$nomor = 1;

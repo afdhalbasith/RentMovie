@@ -1,3 +1,7 @@
+<?php
+SESSION_START();
+include 'koneksi.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,8 +33,7 @@
           <div id="header">
               <div id="nav">
               <?php
-                  SESSION_START();
-                  include 'koneksi.php';
+                  
                   $idsession = $_SESSION['idm'];
                   $fid = $_GET['fid'];
 
@@ -66,7 +69,7 @@
       <div class="inner">
             <?php
             //$fid = '5001';
-            $zxc = mysql_query("SELECT * FROM film where fid='$fid'");
+            $zxc = mysql_query("SELECT * FROM FILM WHERE FID='$fid'");
             while($row = mysql_fetch_array($zxc)){
                       print "<h3><b>".$row['FNAMA']."</b></h3>";
                       print "<img src='images/".$fid.".jpg' width='180' height='230' alt='photo 1' class='left' />";
@@ -102,7 +105,7 @@
          </form>
         <div class="clear"></div><div class="clear"></div><div class="clear"></div><div class="clear"></div><div class="clear"></div>
                       <?php
-                      $queryy = ("SELECT pengguna.NAMA,mereview.REVIEW FROM pengguna,mereview WHERE pengguna.UID=mereview.UID anD FID='$fid'");
+                      $queryy = ("SELECT PENGGUNA.NAMA,MEREVIEW.REVIEW FROM PENGGUNA,MEREVIEW WHERE PENGGUNA.UID=MEREVIEW.UID AND FID='$fid'");
                       $komen = mysql_query($queryy);
                       while($row = mysql_fetch_array($komen)){
                         print "<b>".$row['NAMA']."</b> says...<br>";

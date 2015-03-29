@@ -1,3 +1,7 @@
+<?php
+SESSION_START();
+include 'koneksi.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -11,11 +15,10 @@
           <div id="header">
               <div id="nav">
               	  <?php
-                  SESSION_START();
-                  include 'koneksi.php';
+                  
                   $idsession = $_SESSION['ida'];
 
-                  $lol = mysql_query("SELECT NAMA from pengguna where uid='$idsession'");
+                  $lol = mysql_query("SELECT NAMA FROM PENGGUNA WHERE UID='$idsession'");
                   while($row = mysql_fetch_array($lol)){
                   echo "Helloo ".$row["NAMA"]."<br>";}
                   ?>
@@ -55,7 +58,7 @@
                 		?>-->
 
                     <?php 
-                    $hmm = mysql_query("SELECT * FROM peminjaman,pengguna WHERE pengguna.UID=peminjaman.UID and peminjaman.STATUSPJ='Finished' ORDER BY WAKTUKEMBALI ");
+                    $hmm = mysql_query("SELECT * FROM PEMINJAMAN,PENGGUNA WHERE PENGGUNA.UID=PEMINJAMAN.UID AND PEMINJAMAN.STATUSPJ='Finished' ORDER BY WAKTUKEMBALI ");
                     print "<table border='1' style='width: 540px;'><tbody>";
                     print "<tr><th>ID Peminjaman</th><th>Nama Peminjam</th><th>Tanggal Pinjam</th><th>Tanggal Kembali</th><th>Denda</th><th>Pilihan</th></tr>";
                     while($row = mysql_fetch_array($hmm)){

@@ -7,7 +7,7 @@ include 'koneksi.php';
 		$password = $_GET['password'];
 
 		//query
-		$sql = "SELECT * FROM pengguna WHERE username = '$username' AND password = '$password'";
+		$sql = "SELECT * FROM PENGGUNA WHERE USERNAME = '$username' AND PASSWORD = '$password'";
 		$result = mysql_query($sql);
 
 		$flag = 0;
@@ -23,7 +23,8 @@ include 'koneksi.php';
 				$_SESSION['idm'] = $row["UID"];
 				$_SESSION['namam'] = $row["NAMA"];
 
-				header("Location:homepage.php");
+				//header("Location:homepage.php");
+				echo '<script> self.location="homepage.php"; </script>';
 
 				echo "member";
 			}
@@ -32,7 +33,8 @@ include 'koneksi.php';
 				$_SESSION['ida'] = $row["UID"];
 				$_SESSION['namaa'] = $row["NAMA"];
 
-				header("Location:pgw-pengembalian.php");
+				//header("Location:pgw-pengembalian.php");
+				echo '<script> self.location="pgw-pengembalian.php"; </script>';
 
 				echo "admin";
 			}
@@ -44,7 +46,8 @@ include 'koneksi.php';
 		
 	  	if($flag == 0) 
 	   	{ 
-    		header("Location:index.php?status=gagal");
+    		//header("Location:index.php?status=gagal");
+    		echo '<script> self.location="index.php?status=gagal"; </script>';
        	} 
 
 mysql_close();

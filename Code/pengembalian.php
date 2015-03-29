@@ -1,3 +1,7 @@
+<?php
+SESSION_START();
+include 'koneksi.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,11 +33,10 @@
           <div id="header">
               <div id="nav">
                    <?php
-                  SESSION_START();
-                  include 'koneksi.php';
+                  
                   $idsession = $_SESSION['idm'];
 
-                  $lol = mysql_query("SELECT NAMA from pengguna where uid='$idsession'");
+                  $lol = mysql_query("SELECT NAMA FROM PENGGUNA WHERE UID='$idsession'");
                   while($row = mysql_fetch_array($lol)){
                   echo "Helloo ".$row["NAMA"]."<br>";}
                   ?>
@@ -76,7 +79,7 @@
                 
                 $uidd = $idsession;
 
-                $query = "SELECT PID,WAKTUPINJAM,WAKTUKEMBALI FROM peminjaman WHERE
+                $query = "SELECT PID,WAKTUPINJAM,WAKTUKEMBALI FROM PEMINJAMAN WHERE
                           UID='$uidd' AND STATUSPJ='Rented'";
 
                 /*
@@ -104,7 +107,7 @@
 				if(isset($_GET['denda']))
 				{
 					$ppidd = $_GET['pid'];
-					$dendasql = mysql_query("SELECT * FROM peminjaman WHERE PID='$ppidd'");
+					$dendasql = mysql_query("SELECT * FROM PEMINJAMAN WHERE PID='$ppidd'");
 					$row = mysql_fetch_array($dendasql);
 					$denda = $row['DENDA'];
 					echo "Peminjaman dengan ID ".$ppidd." menghasilkan denda sebesar Rp ".$denda."<br>";

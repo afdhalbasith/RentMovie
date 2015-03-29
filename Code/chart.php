@@ -1,6 +1,7 @@
 <?php
-include 'koneksi.php';
 SESSION_START();
+include 'koneksi.php';
+
 $id = $_SESSION['idm'];
 $nama = $_SESSION['namam'];
 
@@ -76,7 +77,7 @@ $nama = $_SESSION['namam'];
               else 
               {
                 $pid = $_SESSION['idpeminjaman'];
-                $sqle = mysql_query("SELECT * FROM peminjaman WHERE PID='$pid'");
+                $sqle = mysql_query("SELECT * FROM PEMINJAMAN WHERE PID='$pid'");
 
                 while($row = mysql_fetch_array($sqle))
                 {
@@ -94,7 +95,7 @@ $nama = $_SESSION['namam'];
 							
               <?php
 
-              $sql = mysql_query("SELECT detil_peminjaman.DID, detil_peminjaman.FID, film.FNAMA, film.HARGA FROM film, detil_peminjaman WHERE detil_peminjaman.FID=film.FID and detil_peminjaman.PID='$pid'");
+              $sql = mysql_query("SELECT DETIL_PEMINJAMAN.DID, DETIL_PEMINJAMAN.FID, FILM.FNAMA, FILM.HARGA FROM FILM, DETIL_PEMINJAMAN WHERE DETIL_PEMINJAMAN.FID=FILM.FID and DETIL_PEMINJAMAN.PID='$pid'");
               while($row = mysql_fetch_array($sql))
               {
               echo '<tr><td>'.$row['FID'].'</td><td>'.$row['FNAMA'].'</td><td>'.$row['HARGA'].'</td>

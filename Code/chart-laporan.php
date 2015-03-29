@@ -1,6 +1,7 @@
 <?php
-include 'koneksi.php';
 SESSION_START();
+include 'koneksi.php';
+
 $id = $_SESSION['idm'];
 //$id = '100';
 $nama = $_SESSION['namam'];
@@ -12,7 +13,8 @@ $waktukembali = $_GET['waktukembali'];
 $sysdate = date("Y-m-d");
 if($waktukembali < $sysdate)
 {
-  header("Location:chart.php?status=gagal"); 
+  //header("Location:chart.php?status=gagal"); 
+  echo '<script> self.location="chart.php?status=gagal"; </script>';
 }
 
 ?>
@@ -83,7 +85,7 @@ if($waktukembali < $sysdate)
                 /* -----------------------------------------------------------------------------------------------------------
                                               LAPORAN PENGIRIMAN
                 -------------------------------------------------------------------------------------------------------------*/
-                $sqle = mysql_query("SELECT * FROM peminjaman WHERE PID='$pid'");
+                $sqle = mysql_query("SELECT * FROM PEMINJAMAN WHERE PID='$pid'");
 
                 $row = mysql_fetch_array($sqle);
               
@@ -99,7 +101,7 @@ if($waktukembali < $sysdate)
               /* ----------------------------------------------------------------------------------------------------------------
                                                 DATA PEMINJAM
               -------------------------------------------------------------------------------------------------------------------- */
-              $peminjam = mysql_query("SELECT * FROM pengguna WHERE UID='$uid'");
+              $peminjam = mysql_query("SELECT * FROM PENGGUNA WHERE UID='$uid'");
               $row = mysql_fetch_array($peminjam);
               
                 echo "<b>Nama Peminjam : </b>".$row['NAMA']."<br>";
@@ -115,7 +117,7 @@ if($waktukembali < $sysdate)
 
               $nomer = 1;
 
-              $sql = mysql_query("SELECT detil_peminjaman.FID, film.FNAMA, film.HARGA FROM film, detil_peminjaman WHERE detil_peminjaman.FID=film.FID and detil_peminjaman.PID='$pid'");
+              $sql = mysql_query("SELECT DETIL_PEMINJAMAN.FID, FILM.FNAMA, FILM.HARGA FROM FILM, DETIL_PEMINJAMAN WHERE DETIL_PEMINJAMAN.FID=FILM.FID and DETIL_PEMINJAMAN.PID='$pid'");
               while($row = mysql_fetch_array($sql))
               {
                 echo $nomer.". ".$row['FNAMA']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$row['HARGA']."<br>";
